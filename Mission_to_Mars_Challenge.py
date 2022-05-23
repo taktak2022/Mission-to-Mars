@@ -1,11 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 # MODULE 10.3.3 Import Splinter and BeautifulSoup; IMPORT SCRAPING TOOLS
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
 from webdriver_manager.chrome import ChromeDriverManager
-
 import pandas as pd
 
 
@@ -47,7 +43,6 @@ news_p
 
 # ### Featured Images
 
-
 # MODULE 10.3.4 Visit URL
 url = 'https://spaceimages-mars.com'
 browser.visit(url)
@@ -62,6 +57,7 @@ full_image_elem.click()
 # Parse the resulting html with soup;  NEED TO FIND THE RELATIVE IMAGE URL
 html = browser.html
 img_soup = soup(html, 'html.parser')
+img_soup
 
 
 # Find the relative image url
@@ -78,11 +74,52 @@ img_url
 # WEBSCRAPING AN ENTIRE TABLE;  USE .read_html() FUNCTION
 
 df = pd.read_html('https://galaxyfacts-mars.com')[0]
+df.head()
+
+
 df.columns=['description', 'Mars', 'Earth']
 df.set_index('description', inplace=True)
 df
 
+
 df.to_html()
+
+
+# 1. Use browser to visit the URL 
+url = 'https://marshemispheres.com/'
+
+browser.visit(url)
+
+
+# 2. Create a list to hold the images and titles.
+hemisphere_image_urls = []
+
+
+# 3. Write code to retrieve the image urls and titles for each hemisphere.
+for hemis in range(4):
+    # Browse through each article
+    browser.links.find_by_partial_text('Hemisphere')[hemis].click()
+    
+    # Parse the HTML
+    html = browser.html
+    hemi_soup = soup(html,'html.parser')
+    
+    # Scraping
+    title = hemi_soup.find('h2', class_='title').text
+    img_url = hemi_soup.find('li').a.get('href')
+    
+    # Store findings into a dictionary and append to list
+    hemispheres = {}
+    hemispheres['img_url'] = f'https://marshemispheres.com/{img_url}'
+    hemispheres['title'] = title
+    hemisphere_image_urls.append(hemispheres)
+    
+    # Browse back to repeat
+    browser.back()
+
+
+# 4. Print the list that holds the dictionary of each image url and title.
+hemisphere_image_urls
 
 
 # END OF MODULE 10.3.5 END THE AUTOMATED BROWSER SESSION
