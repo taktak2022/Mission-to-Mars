@@ -31,4 +31,4 @@ When it did finally come all together, the result looks like the following:
 ![Mission to Mars webpage Mod 10](https://user-images.githubusercontent.com/99851509/172508344-5f08f672-e7fe-4920-8408-ae66f3c5f554.png)
 
 ## Summary
-In conclusion, I feel as if this module should have come after Module 11 UFOs which explained HTML in finer detail and would take care of explaining the inner workings of HTML in this module.  Another option would be to break this module up with more sections explaining in explicit detail how all the tools listed above related and interacted to create the final picture of this puzzle called "Web-Scraping".
+In conclusion, I feel as if this module should have come after Module 11 UFOs which explained HTML in finer detail and would take care of explaining the inner workings of HTML in this module.  Another option would be to break this module up with more sections explaining in explicit detail how all the tools listed above related and interacted with each other to create the final picture of this puzzle called "Web-Scraping".
